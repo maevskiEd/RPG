@@ -1,3 +1,3 @@
 public interface Fighter {
-    void fight();
+    void fight(Fighter opponent);
 }

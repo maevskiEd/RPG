@@ -1,10 +1,11 @@
-abstract public class Character {
+abstract public class Character{
     private String name;
     private int HP;
     private int strength;
     private int dexterity;
     private int exp;
     private int gold;
+    private int maxHP;
 
 
     public Character(String name, int HP, int strength, int dexterity, int exp, int gold) {
@@ -14,6 +15,7 @@ abstract public class Character {
         this.dexterity = dexterity;
         this.exp = exp;
         this.gold = gold;
+        this.maxHP = HP;
     }
 
     public String getName() {

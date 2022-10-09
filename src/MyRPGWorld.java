@@ -11,6 +11,8 @@ public class MyRPGWorld {
     Player player;
     Monster monster;
 
+    Arena arena;
+
     private Menu menu = new Menu();
 
     public MyRPGWorld(String name) {
@@ -27,6 +29,8 @@ public class MyRPGWorld {
 
     private void goToArena(Player player, Monster monster) {
         System.out.println("goToArena");
+        arena = new Arena(player, monster);
+        arena.fightStart();
     }
 
     private void trade() {

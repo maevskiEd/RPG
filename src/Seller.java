@@ -1,4 +1,9 @@
 public interface Seller {
-    void buy();
-    void sell();
+    default void buy() {
+        System.out.println("Покупаем");
+    }
+
+    default void sell() {
+        System.out.println("Продаем");
+    }
 }
