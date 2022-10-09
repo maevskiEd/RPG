@@ -2,12 +2,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MyRPGWorld {
-    static String intro = """
-            Наберите команду или номер этой команды:
-            '[1] - trade' - идти к торговцу
-            '[2] - fight' - чтобы побить монстра
-            '[0] - exit' - чтобы выйти.""";
-
     Player player;
     Monster monster;
 
@@ -28,7 +22,6 @@ public class MyRPGWorld {
     }
 
     private void goToArena(Player player, Monster monster) {
-        System.out.println("goToArena");
         arena = new Arena(player, monster);
         arena.fightStart();
     }
@@ -52,13 +45,13 @@ public class MyRPGWorld {
                     key = menuItem.ordinal();
                 } catch (Exception e) {
                     System.out.println("Вводите команды согласно инструкции.");
-                    System.out.println(intro);
+                    System.out.println(ConstsClass.intro);
                     menuItem = null;
                 }
 
             } else {
                 key = Integer.parseInt(option);
-                menuItem = menuItem.values()[key];
+                menuItem = MenuItem.values()[key];
             }
 
             if (menuItem != null) {

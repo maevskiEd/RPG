@@ -3,6 +3,8 @@ public class Arena {
     Fighter fighterRed;
     Fighter fighterBlue;
 
+    ThreadGroup tg;
+
     public Arena(Fighter player, Fighter monster) {
         fighterRed = player;
         fighterBlue = monster;
@@ -11,7 +13,7 @@ public class Arena {
     void fightStart() {
         Fight attackRed = new Fight(fighterRed, fighterBlue);
         Fight attackBlue = new Fight(fighterBlue, fighterRed);
-        ThreadGroup tg = new ThreadGroup("Group");
+        tg = new ThreadGroup("Group");
         Thread threadRed = new Thread(tg, attackRed);
         Thread threadBlue = new Thread(tg, attackBlue);
 
@@ -30,9 +32,27 @@ public class Arena {
 
         @Override
         public void run() {
-            System.out.printf("Attacking: %s, Defensive: %s%n",
-                    ((Character) attacking).getName(),((Character) defensive).getName());
             attacking.fight(defensive);
+            tg.interrupt();
+
+            if (((Character) attacking).getHP() > 0) {
+                if (attacking instanceof Player) {
+
+                    ((Character) attacking).setGold(((Character) attacking).getGold()+((Character) defensive).getGold());
+                    ((Character) defensive).setGold(0);
+                    ((Character) attacking).setExp(((Character) defensive).getMaxHP());
+                    ((Character) attacking).fullStatus();
+                    ((Character) defensive).fullStatus();
+                    System.out.println("Вам подвезли нового монстра.");
+                    ((Monster) defensive).rebirth();
+                    ((Character) defensive).fullStatus();
+                    System.out.println();
+                    System.out.println(ConstsClass.intro);
+                } else {
+                    System.out.println("Вы проиграли. Посыпьте голову пеплом и нажмите - 0");
+                }
+
+            }
         }
     }
 }

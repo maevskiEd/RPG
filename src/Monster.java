@@ -1,4 +1,4 @@
-public class Monster extends Character  implements Fighter, DiceRoll{
+public class Monster extends Character{
     public Monster() {
         super(isSkeletonOrGoblin(),
                 DiceRoll.roll(100),
@@ -14,9 +14,12 @@ public class Monster extends Character  implements Fighter, DiceRoll{
         else return "Skeleton";
     }
 
-    public void fight(Fighter opponent) {
-        System.out.printf("Я бьюсь головой об стену. %s Противник %s смотрит и смеется.%n",
-                this.getName(),((Character) opponent).getName());
-
+    void rebirth (){
+        this.setName(isSkeletonOrGoblin());
+        this.setHP(DiceRoll.roll(100));
+        this.setMaxHP(this.getHP());
+        this.setStrength(DiceRoll.roll(9));
+        this.setDexterity(DiceRoll.roll(9));
+        this.setGold(DiceRoll.roll(9));
     }
 }
