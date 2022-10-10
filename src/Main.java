@@ -13,7 +13,7 @@ public class Main {
         System.out.println("New Game - start.Введите имя персонажа:");
         String s = scanner.nextLine();
         MyRPGWorld rpgWorld = new MyRPGWorld(s);
-        System.out.println("Здравствуйте. Спасибо, что зашли в эту бессмысленную игру:");
+        System.out.println("Здравствуйте. Спасибо, что зашли:");
         System.out.println("Ваше имя: " + rpgWorld.player.getName());
         System.out.printf("Ваши характеристики: HP %d, str %d, dex %d%n",
                 rpgWorld.player.getHP(), rpgWorld.player.getStrength(), rpgWorld.player.getDexterity());
